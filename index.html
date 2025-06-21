@@ -72,20 +72,19 @@
       margin: 15px 0;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
-    audio { display: none; }
-  </style>
-</head>
-<body>
-<audio controls>
-  <source src="audio.mp3" type="audio/mpeg">
-  <source src="audio.ogg" type="audio/ogg">
+<audio id="romanticAudio" autoplay preload="auto" playsinline>
+  <source src="romantic.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
-  <audio ref="romanticAudio" src="romantic.mp3" autoPlay </audio>
-  </audio><audio id="romanticAudio" loop>
-  <source src="romantic.mp3" type="audio/mpeg" />
-  </audio>
 
+<script>
+  window.addEventListener('load', function () {
+    var audio = document.getElementById('myAudio');
+    audio.play().catch(function(error) {
+      console.log("Autoplay might be blocked:", error);
+    });
+  });
+</script>
   <div class="heart" style="left:10%; animation-delay: 0s;"></div>
   <div class="heart" style="left:30%; animation-delay: 2s;"></div>
   <div class="heart" style="left:50%; animation-delay: 4s;"></div>
