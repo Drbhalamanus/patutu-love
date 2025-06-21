@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For You, Patutu 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #fcd5ce, #fff0f5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      color: #4b2e2e;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 25px;
+      background: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    button:hover {
+      background: #ff6090;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 6s infinite ease-in;
+      opacity: 0.4;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        bottom: -20px;
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.9;
+      }
+      100% {
+        bottom: 100%;
+        opacity: 0;
+        transform: translateX(40px) rotate(45deg);
+      }
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin: 15px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="heart" style="left:10%; animation-delay: 0s;"></div>
+  <div class="heart" style="left:30%; animation-delay: 2s;"></div>
+  <div class="heart" style="left:50%; animation-delay: 4s;"></div>
+  <div class="heart" style="left:70%; animation-delay: 1s;"></div>
+  <div class="heart" style="left:90%; animation-delay: 3s;"></div>
+
+  <div class="container" id="box">
+    <h1>Patutu... 💌</h1>
+    <p>Mere dil ke kuch raaz sirf aapke liye hain. Har click ek naya ehsaas hai...</p>
+    <button onclick="nextStep()">Next ➤</button>
+  </div>
+
+  <audio autoplay loop>
+    <source src="https://www.fesliyanstudios.com/play-mp3/6525" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const messages = [...Array(29)].map((_, i) => "Message " + (i+1));
+    const secretMessage = \`
+      <h1>💌 Meri Patutu ke Naam</h1>
+      <p>Yeh 30 lamhe sirf lafz nahi the... meri rooh se nikal kar aapke dil tak jaane ki koshish thi.<br><br>
+      Main, Ayush, dil se aapse maafi maangta hoon. Nafrat ka ek pal bhi mere dil mein kabhi nahi tha.<br><br>
+      Sirf mohabbat thi, hai... aur hamesha rahegi. Aap meri pehli soch, aakhri dua, aur bepanah pyaar ho.<br><br>
+      Agar aapka dil kabhi maaf kar de... toh bas ek baar kehna, “chalo phir se”.<br><br>
+      Main poori zindagi wohi line jeene ko tayyar hoon.</p>
+      <p><strong>Hamesha apka,<br>Ayush ❤️</strong></p>\`;
+
+    let i = 0;
+    function nextStep() {
+      const box = document.getElementById("box");
+      if (i < messages.length) {
+        box.innerHTML = "<p>" + messages[i] + "</p><button onclick='nextStep()'>Next ➤</button>";
+        i++;
+      } else {
+        box.innerHTML = secretMessage;
+      }
+    }
+  </script>
+</body>
+</html>
